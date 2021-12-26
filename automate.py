@@ -58,28 +58,32 @@ def seleniumAuto():
         else:
             waiting.pack_forget()
 
-        writeText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[2]/div/textarea")
-        writeText.click()
-        writeText.send_keys(mensaje)
+        try:
+            writeText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[2]/div/textarea")
+            writeText.click()
+            writeText.send_keys(mensaje)
 
-        sendText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[3]/div/button")
-        sendText.click()
-        
-        sleep(0.5)
-        
-        nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
-        nextPerson.click()
-        sleep(1)
+            sendText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[3]/div/button")
+            sendText.click()
+            
+            sleep(0.5)
+            
+            nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
+            nextPerson.click()
+            sleep(1)
 
-        nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
-        nextPerson.click()
-        sleep(1)
+            nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
+            nextPerson.click()
+            sleep(1)
 
-        nextPerson = driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
-        nextPerson.click()
-        sleep(2.5)
-        
-        i+=1
+            nextPerson = driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
+            nextPerson.click()
+            sleep(2.5)
+            
+            i+=1
+
+        except:
+            waiting.config(text="Hubo un error, intentando de nuevo...")
 
     return
 

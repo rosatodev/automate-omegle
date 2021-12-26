@@ -26,19 +26,7 @@ def launchBrowser():
 
         # leerArchivo = driver.find_element(By.ID, "MainContent_lbProgressFile2")
 
-def seleniumAuto():
-    mensaje = mensajeOmegle.get()
-    cantidad = cantMensajes.get()
-
-    i = 0
-
-    while (i != int(cantidad)):
-        if (i % 10 == 0):
-            waiting = Label(root, text="Esperando 5 segundos...")
-            waiting.pack()
-            sleep(5)
-        else:
-            waiting.pack_forget()
+def omegleStart():
 
         tocarTexto = driver.find_element(By.ID, "textbtn")
         tocarTexto.click()
@@ -53,6 +41,22 @@ def seleniumAuto():
         clickCheck.click()    
 
         sleep(1)
+
+def seleniumAuto():
+    mensaje = mensajeOmegle.get()
+    cantidad = cantMensajes.get()
+
+    i = 0
+
+    omegleStart()
+
+    while (i != int(cantidad)):
+        if (i % 10 == 0):
+            waiting = Label(root, text="Esperando 5 segundos...")
+            waiting.pack()
+            sleep(5)
+        else:
+            waiting.pack_forget()
 
         writeText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[2]/div/textarea")
         writeText.click()

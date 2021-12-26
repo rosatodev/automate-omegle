@@ -13,7 +13,7 @@ def launchBrowser():
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-crash-reporter")
     options.add_argument("--disable-extensions")
-    #options.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_argument("--incognito")
 
 
@@ -89,6 +89,7 @@ driver = launchBrowser()
 driver.execute_script("window.scrollTo(0, window.scrollY + 250)")
 
 root = Tk()
+root.title("Omegle Automate")
 root.geometry("500x200")
 
 l_mensajeOmegle = Label(root, text="Mensaje a Spammear en Omegle")

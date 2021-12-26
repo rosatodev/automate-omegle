@@ -15,7 +15,7 @@ def launchBrowser():
     options.add_argument("--disable-extensions")
     #options.add_argument("--headless")
     options.add_argument("--incognito")
-    
+
 
     s = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome( options=options , service=s)
@@ -48,7 +48,8 @@ def seleniumAuto():
         sleep(1)
 
         writeText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[2]/div/textarea")
-        writeText.sendKeys(mensaje)
+        writeText.click()
+        writeText.send_keys(mensaje)
 
         sendText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[3]/div/button")
         sendText.click()

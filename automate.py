@@ -66,12 +66,12 @@ def seleniumAuto():
         nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
         nextPerson.click()
 
-        sleep(0.5)
+        sleep(1)
 
         nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
         nextPerson.click()
 
-        sleep(0.5)
+        sleep(1)
 
         nextPerson = driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[1]/div[1]/div/div[5]/div/div/img")
         nextPerson.click()

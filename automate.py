@@ -9,17 +9,13 @@ from tkinter import *
 
 def launchBrowser():
 
-    options.add_argument("--log-level=OFF")
     options.add_argument("--mute-audio")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-crash-reporter")
     options.add_argument("--disable-extensions")
-    options.add_argument("--disable-in-process-stack-traces")
-    options.add_argument("--disable-logging")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--log-level=3")
-    options.add_argument("--output=/dev/null")
+    options.add_argument("--headless")
     options.add_argument("--incognito")
+    
 
     s = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome( service_log_path='/dev/null', service=s)
@@ -47,14 +43,15 @@ driver = launchBrowser()
 driver.execute_script("window.scrollTo(0, window.scrollY + 250)")
 
 root = Tk()
+root.geometry("500x200")
 
-l_mensajeOmegle = Label(root, text="Ingrese el mensaje a Spammear en Omegle")
+l_mensajeOmegle = Label(root, text="Mensaje a Spammear en Omegle")
 l_mensajeOmegle.pack()
 
 mensajeOmegle = Entry(root, width=30)
 mensajeOmegle.pack()
 
-l_cantMensajes = Label(root, text="Ingrese la cantidad de repeticiones del mensaje")
+l_cantMensajes = Label(root, text="Cantidad de repeticiones del mensaje")
 l_cantMensajes.pack()
 
 cantMensajes = Entry(root, width=30)

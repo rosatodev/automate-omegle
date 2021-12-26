@@ -33,6 +33,13 @@ def seleniumAuto():
     i = 0
 
     while (i != int(cantidad)):
+        if (i % 10 == 0):
+            waiting = Label(root, text="Esperando 5 segundos...")
+            waiting.pack()
+            sleep(5)
+        else:
+            waiting.pack_forget()
+            
         tocarTexto = driver.find_element(By.ID, "textbtn")
         tocarTexto.click()
 
@@ -58,6 +65,8 @@ def seleniumAuto():
         
         nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
         nextPerson.click()
+
+        sleep(0.5)
 
         nextPerson = driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
         nextPerson.click()

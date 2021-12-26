@@ -13,7 +13,7 @@ def launchBrowser():
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-crash-reporter")
     options.add_argument("--disable-extensions")
-    options.add_argument("--headless")
+    #options.add_argument("--headless")
     options.add_argument("--incognito")
     
 
@@ -24,25 +24,16 @@ def launchBrowser():
     driver.get('https://www.omegle.com')
     return driver
 
-def ingresos():
-    l_mensajeOmegle = Label(root, text="Mensaje a Spammear en Omegle")
-    l_mensajeOmegle.pack()
-
-    mensajeOmegle = Entry(root, width=30)
-    mensajeOmegle.pack()
-
-    l_cantMensajes = Label(root, text="Cantidad de repeticiones del mensaje")
-    l_cantMensajes.pack()
-
-    cantMensajes = Entry(root, width=30)
-    cantMensajes.pack()
-
-    btn_enviar = Button(root, text="Enviar")
-    btn_enviar.pack(pady=20)
-
         # leerArchivo = driver.find_element(By.ID, "MainContent_lbProgressFile2")
 
-    return (mensajeOmegle, cantMensajes)
+def seleniumAuto():
+    mensaje = mensajeOmegle.get()
+    cantidad = cantMensajes.get()
+
+
+    
+
+    return
 
 options = webdriver.ChromeOptions()
 driver = launchBrowser()
@@ -52,7 +43,21 @@ driver.execute_script("window.scrollTo(0, window.scrollY + 250)")
 root = Tk()
 root.geometry("500x200")
 
-ingresos()
+l_mensajeOmegle = Label(root, text="Mensaje a Spammear en Omegle")
+l_mensajeOmegle.pack()
+
+mensajeOmegle = Entry(root, width=30)
+mensajeOmegle.pack()
+
+l_cantMensajes = Label(root, text="Cantidad de repeticiones del mensaje")
+l_cantMensajes.pack()
+
+cantMensajes = Entry(root, width=30)
+cantMensajes.pack()
+
+btn_enviar = Button(root, text="Enviar",width=30,height=5, command=seleniumAuto)
+btn_enviar.pack(pady=20)
+
 
 root.mainloop()
 

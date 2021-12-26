@@ -13,7 +13,7 @@ def launchBrowser():
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-crash-reporter")
     options.add_argument("--disable-extensions")
-    options.add_argument("--headless")
+    #options.add_argument("--headless")
     options.add_argument("--incognito")
 
 

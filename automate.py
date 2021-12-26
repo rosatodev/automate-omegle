@@ -18,21 +18,24 @@ def launchBrowser():
     
 
     s = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome( service_log_path='/dev/null', service=s)
+    driver = webdriver.Chrome( options=options , service=s)
     driver.set_window_size(709, 1200)
 
     driver.get('https://www.omegle.com')
     return driver
 
 def ingresos():
-    mensajeOmegle = input("Ingresa el texto que queres spammear en Omegle: ")
-    while (mensajeOmegle == ""):
-        mensajeOmegle = input("Ingresa el texto que queres spammear en Omegle: ")
+    l_mensajeOmegle = Label(root, text="Mensaje a Spammear en Omegle")
+    l_mensajeOmegle.pack()
 
-    cantMensajes = int(input("Ingrese cantidad de veces que quiera enviar el mensaje: "))
-    while (cantMensajes < 0):
-        cantMensajes = int(input("ERROR, el valor ingresado es inválido, intente de nuevo.\n\nIngrese cantidad de veces que quiera enviar el mensaje: "))
+    mensajeOmegle = Entry(root, width=30)
+    mensajeOmegle.pack()
 
+    l_cantMensajes = Label(root, text="Cantidad de repeticiones del mensaje")
+    l_cantMensajes.pack()
+
+    cantMensajes = Entry(root, width=30)
+    cantMensajes.pack()
     # leerArchivo = driver.find_element(By.ID, "MainContent_lbProgressFile2")
 
     return (mensajeOmegle, cantMensajes)
@@ -44,19 +47,6 @@ driver.execute_script("window.scrollTo(0, window.scrollY + 250)")
 
 root = Tk()
 root.geometry("500x200")
-
-l_mensajeOmegle = Label(root, text="Mensaje a Spammear en Omegle")
-l_mensajeOmegle.pack()
-
-mensajeOmegle = Entry(root, width=30)
-mensajeOmegle.pack()
-
-l_cantMensajes = Label(root, text="Cantidad de repeticiones del mensaje")
-l_cantMensajes.pack()
-
-cantMensajes = Entry(root, width=30)
-cantMensajes.pack()
-
 
 ingresos()
 

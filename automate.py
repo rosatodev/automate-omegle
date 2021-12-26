@@ -36,7 +36,11 @@ def ingresos():
 
     cantMensajes = Entry(root, width=30)
     cantMensajes.pack()
-    # leerArchivo = driver.find_element(By.ID, "MainContent_lbProgressFile2")
+
+    btn_enviar = Button(root, text="Enviar")
+    btn_enviar.pack(pady=20)
+
+        # leerArchivo = driver.find_element(By.ID, "MainContent_lbProgressFile2")
 
     return (mensajeOmegle, cantMensajes)
 

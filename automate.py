@@ -30,8 +30,35 @@ def seleniumAuto():
     mensaje = mensajeOmegle.get()
     cantidad = cantMensajes.get()
 
-
+    i = 0
     
+    while (i != int(cantidad)):
+        tocarTexto = driver.find_element(By.ID, "textbtn")
+        tocarTexto.click()
+
+        clickCheck = driver.find_element(By.XPATH, "/html/body/div[7]/div/p[1]/label/input")
+        clickCheck.click()
+
+        clickCheck = driver.find_element(By.XPATH, "/html/body/div[7]/div/p[2]/label/input")
+        clickCheck.click()
+
+        clickCheck = driver.find_element(By.XPATH, "/html/body/div[7]/div/p[3]/input")
+        clickCheck.click()    
+
+        writeText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[2]/div/textarea")
+        writeText.sendKeys(mensaje)
+
+        sendText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[3]/div/button")
+        sendText.click()
+        
+        nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
+        nextPerson.click()
+
+        nextPerson = driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
+        nextPerson.click()
+
+        sleep(1)
+        i+=1
 
     return
 

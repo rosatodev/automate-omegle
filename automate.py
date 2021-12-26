@@ -31,7 +31,7 @@ def seleniumAuto():
     cantidad = cantMensajes.get()
 
     i = 0
-    
+
     while (i != int(cantidad)):
         tocarTexto = driver.find_element(By.ID, "textbtn")
         tocarTexto.click()
@@ -45,11 +45,15 @@ def seleniumAuto():
         clickCheck = driver.find_element(By.XPATH, "/html/body/div[7]/div/p[3]/input")
         clickCheck.click()    
 
+        sleep(1)
+
         writeText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[2]/div/textarea")
         writeText.sendKeys(mensaje)
 
         sendText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[3]/div/button")
         sendText.click()
+        
+        sleep(0.5)
         
         nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
         nextPerson.click()

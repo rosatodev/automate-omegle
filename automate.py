@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 from time import sleep
+from tkinter import *
+from tkinter import ttk
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from threading import Thread
 
-from tkinter import *
 
 def launchBrowser():
 
@@ -25,6 +27,9 @@ def launchBrowser():
     return driver
 
         # leerArchivo = driver.find_element(By.ID, "MainContent_lbProgressFile2")
+
+def arranque():
+        Thread(target=seleniumAuto).start()
 
 def omegleStart():
 
@@ -46,44 +51,42 @@ def seleniumAuto():
     mensaje = mensajeOmegle.get()
     cantidad = cantMensajes.get()
 
-    i = 0
+    i = 1
 
     omegleStart()
 
     while (i != int(cantidad)):
-        if (i % 10 == 0):
-            waiting = Label(root, text="Esperando 5 segundos...")
-            waiting.pack()
-            sleep(5)
-        else:
-            waiting.pack_forget()
-
+        
+        waiting.config(text="Mensajes enviados: "+str(i)+"/"+cantidad)
         try:
             writeText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[2]/div/textarea")
             writeText.click()
             writeText.send_keys(mensaje)
+        except:
+            print("ERROR, en escritura de texto")
 
+        try:    
             sendText = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[3]/div/button")
             sendText.click()
-            
             sleep(0.5)
-            
-            nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
-            nextPerson.click()
-            sleep(1)
-
-            nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
-            nextPerson.click()
-            sleep(1)
-
-            nextPerson = driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
-            nextPerson.click()
-            sleep(2.5)
-            
-            i+=1
-
         except:
-            waiting.config(text="Hubo un error, intentando de nuevo...")
+            print("ERROR, en envio de texto")
+        
+        
+        nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
+        nextPerson.click()
+        sleep(1)
+
+        nextPerson = driver.find_element(By.XPATH, "/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
+        nextPerson.click()
+        sleep(1)
+
+        nextPerson = driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
+        nextPerson.click()
+        sleep(2.5)
+        
+        i+=1
+        progressbar.step(100/int(cantidad))
 
     return
 
@@ -94,7 +97,7 @@ driver.execute_script("window.scrollTo(0, window.scrollY + 250)")
 
 root = Tk()
 root.title("Omegle Automate")
-root.geometry("500x200")
+root.geometry("500x400")
 
 l_mensajeOmegle = Label(root, text="Mensaje a Spammear en Omegle")
 l_mensajeOmegle.pack()
@@ -108,12 +111,13 @@ l_cantMensajes.pack()
 cantMensajes = Entry(root, width=30)
 cantMensajes.pack()
 
-btn_enviar = Button(root, text="Enviar",width=30,height=5, command=seleniumAuto)
+waiting = Label(root, text="")
+waiting.pack()
+
+btn_enviar = Button(root, text="Enviar",width=30,height=3, command = arranque)
 btn_enviar.pack(pady=20)
 
+progressbar = ttk.Progressbar(root, orient=HORIZONTAL,length=280, maximum=100)
+progressbar.pack()
 
 root.mainloop()
-
-
-
-

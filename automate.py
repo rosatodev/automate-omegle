@@ -73,7 +73,7 @@ def seleniumAuto():
 
         nextPerson = driver.find_element(By.XPATH,"/html/body/div[5]/div/div/div[2]/table/tbody/tr/td[1]/div/button")
         nextPerson.click()
-        sleep(1)
+        sleep(2.5)
         
         i+=1
 
